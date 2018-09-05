@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Klurigheter.Models;
+using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Klurigheter.Database.PgEngine;
 
 namespace Klurigheter
 {
@@ -24,5 +27,28 @@ namespace Klurigheter
         {
             InitializeComponent();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //int id =  SavePlayer(new Player() { Name = "Erik", Nickname = "Maestro" });
+               int id = SavePlayer2(new Player() { Name = "Erik", Nickname = "Maestro" });
+                MessageBox.Show($"Spelaren är tillagd med id-nummer: {id}");
+            }
+            catch (PostgresException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        #region Transaktioner
+        public static int SavePlayers(List<Player> players)
+        {
+            return 0;
+        }
+
+        #endregion
     }
 }
