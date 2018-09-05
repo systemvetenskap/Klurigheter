@@ -43,12 +43,6 @@ namespace Klurigheter
             }
         }
 
-        #region Transaktioner
-        public static int SavePlayers(List<Player> players)
-        {
-            return 0;
-        }
-
-        #endregion
+       
     }
 }

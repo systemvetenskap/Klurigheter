@@ -13,10 +13,18 @@ namespace Klurigheter.Database
     {
         static string connectionString = ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString;
 
+        /// <summary>
+        /// Metod som utifrån ett postgresexception sedan kan skicka ut en sträng med relevant meddelande
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns>Sträng med felmeddelande</returns>
         public static string ErrorMessage(PostgresException ex)
         {
+            string errorMessage = "";
             //ex.ConstraintName
-            return "Databasen krånglar";
+
+            //Returnera den sträng du skapat med information
+            return errorMessage;
         }
         public static int SavePlayer(Player player)
         {
