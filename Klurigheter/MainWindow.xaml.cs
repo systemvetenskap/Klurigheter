@@ -30,15 +30,23 @@ namespace Klurigheter
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            List<Player> players = new List<Player>();
             try
             {
                 //int id =  SavePlayer(new Player() { Name = "Erik", Nickname = "Maestro" });
-               int id = SavePlayer2(new Player() { Name = "Erik", Nickname = "Maestro" });
-                MessageBox.Show($"Spelaren är tillagd med id-nummer: {id}");
+                //int id = SavePlayer2(new Player() { Name = "Erik", Nickname = "Maestro" });
+
+                Player p;
+                p = new Player() { Name = "Erik", Nickname = "Maestro123" };
+                players.Add(p);
+                p = new Player() { Name = "Erik", Nickname = "Maestro124" };
+                players.Add(p);
+                players = SavePlayers(players);
+                //MessageBox.Show($"Spelaren är tillagd med id-nummer: {id}");
             }
             catch (PostgresException ex)
             {
-
+                string errorMessage = ErrorMessage(ex);
                 MessageBox.Show(ex.Message);
             }
         }

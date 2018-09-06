@@ -68,6 +68,47 @@ namespace Klurigheter.Database
             return id;
         }
 
+        #region Transaktionshantering
+        public static List<Player> SavePlayers(List<Player> players)
+        {
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (NpgsqlTransaction trans = conn.BeginTransaction())
+                {
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        try
+                        {
+                            cmd.Connection = conn;
+                            foreach (var p in players)
+                            {
+                                cmd.Parameters.Clear();
+                                cmd.CommandText = "INSERT INTO player(name, nickname) values(@name, @nickname) returning player_id";
+                                cmd.Parameters.AddWithValue("name", p.Name);
+                                cmd.Parameters.AddWithValue("nickname", p.Nickname);
+                                using (var reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        p.Player_id = (int)reader["player_id"];
+
+                                    }
+                                }
+                            }
+                            trans.Commit();
+                        }
+                        catch
+                        {
+                            trans.Rollback();
+                            throw;
+                        }
+                    }
+                }
+                return players;
+            }
+        }
+        #endregion
 
     }
 }
