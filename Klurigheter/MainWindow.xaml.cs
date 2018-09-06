@@ -27,30 +27,52 @@ namespace Klurigheter
         {
             InitializeComponent();
         }
+        List<Player> players = new List<Player>();
+
+        private void AddPlayer(Player p)
+        {
+            players.Add(p);
+        }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            List<Player> players = new List<Player>();
             try
             {
                 //int id =  SavePlayer(new Player() { Name = "Erik", Nickname = "Maestro" });
-                //int id = SavePlayer2(new Player() { Name = "Erik", Nickname = "Maestro" });
+                //id = SavePlayer2(new Player() { Name = "Erik", Nickname = "Maestro" });
 
                 Player p;
-                p = new Player() { Name = "Erik", Nickname = "Maestro123" };
-                players.Add(p);
+                p = new Player() { Name = "Erik", Nickname = "Maestro126" };
+                AddPlayer(p);
                 p = new Player() { Name = "Erik", Nickname = "Maestro124" };
-                players.Add(p);
+                AddPlayer(p);
+                Adult a = new Adult();
+
+
+
                 players = SavePlayers(players);
                 //MessageBox.Show($"Spelaren är tillagd med id-nummer: {id}");
             }
             catch (PostgresException ex)
             {
-                string errorMessage = ErrorMessage(ex);
+                //string errorMessage = ErrorMessage(ex);
                 MessageBox.Show(ex.Message);
             }
         }
 
-       
+        private void bt2_Click(object sender, RoutedEventArgs e)
+        {
+            Papper p = new Papper();
+            Databasskrivare db = new Databasskrivare();
+
+            List<IWrite> minaKlubbkompisar = new List<IWrite>();
+            minaKlubbkompisar.Add(p);
+            minaKlubbkompisar.Add(db);
+
+            foreach (var item in minaKlubbkompisar)
+            {
+                MessageBox.Show(item.Skriv("hej"));
+            }
+        }
     }
 }

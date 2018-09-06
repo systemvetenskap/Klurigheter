@@ -83,6 +83,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\Databasskrivare.cs" />
+    <Compile Include="Models\IRead.cs" />
+    <Compile Include="Models\Klubben.cs" />
+    <Compile Include="Models\Klubbregler.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
