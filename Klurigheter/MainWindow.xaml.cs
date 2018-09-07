@@ -38,15 +38,18 @@ namespace Klurigheter
 
                 Yatzygame game = new Yatzygame();
 
-                Player p;
+                IPlayer p;
                 p = new Player() { Name = "Erik", Nickname = "Maestro126" };
                 game.AddPlayer(p);
                 p = new Player() { Name = "Erik", Nickname = "Maestro124" };
+                game.AddPlayer(p);
+                p = new Robot() { Name = "Erik", Nickname = "Roboten" };
                 game.AddPlayer(p);
 
                 List<IPlayer> players = game.Players;
 
                 // Den här metoden måste ändras om man impementerar Interface
+                // Det går ju inte att spara en Robot som en Player.
                 // players = SavePlayers(players);
                 //MessageBox.Show($"Spelaren är tillagd med id-nummer: {id}");
             }
