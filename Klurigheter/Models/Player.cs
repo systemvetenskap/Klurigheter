@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace Klurigheter.Models
 {
-    public class Player
+    interface IPlayer
+    {
+        int Player_id { get; set; }
+        string Name { get; set; }
+        string Nickname { get; set; }
+
+    }
+
+    public class Player : IPlayer
     {
         public int Player_id { get; set; }
         public string Name { get; set; }
         public string Nickname { get; set; }
-
-        public override string ToString()
-        {
-            return "hej";
-        }
     }
 }

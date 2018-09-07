@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace Klurigheter.Models
 {
-    class Papper : IWrite
+    class Yatzygame
     {
-        public string Skriv(string text)
+        public List<IPlayer> Players { get; private set; } = new List<IPlayer>();
+
+        public void AddPlayer(IPlayer p)
         {
-            return "pappret";
+            Players.Add(p);
         }
+
+       
+
     }
 }
